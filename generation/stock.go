@@ -14,7 +14,7 @@ type Stock struct {
 	gen  Generator
 }
 
-// TODO: make volatility an arg
+// TODO: make volatility an arg in the future
 func MakeStock(id string) *Stock {
 	data := stockpb.Stock{
 		Id: id, TimeStamp: timestamppb.New(time.Now()),
