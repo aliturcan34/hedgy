@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package stockpb;
+
+option go_package = "protos/stockpb";
+
+service StockPublisher {
+  rpc StartMarket (StartMarketRequest) returns (stream Stock);
+}
+
+message StartMarketRequest {
+  repeated string stocks = 1;
+}
+
+message Stock {
+  string id = 1;
+
+  // Use protobuf Timestamp for Go's time.Time
+  google.protobuf.Timestamp time_stamp = 2;
+
+  double last = 3;
+  int32 volume = 4;
+  int32 total_volume = 5;
+
+  // Note: lowercase fields in Go are unexported and not serialized.
+  // If you want to include volatility, make it public.
+  double volatility = 6;
+}
