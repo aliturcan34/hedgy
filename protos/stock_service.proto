@@ -12,6 +12,7 @@ service StockPublisher {
 
 message StartMarketRequest {
   repeated string stocks = 1;
+  google.protobuf.Timestamp start_date = 2;
 }
 
 message Stock {
@@ -24,7 +25,5 @@ message Stock {
   int32 volume = 4;
   int32 total_volume = 5;
 
-  // Note: lowercase fields in Go are unexported and not serialized.
-  // If you want to include volatility, make it public.
   double volatility = 6;
 }

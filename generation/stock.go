@@ -15,9 +15,9 @@ type Stock struct {
 }
 
 // TODO: make volatility an arg in the future
-func MakeStock(id string) *Stock {
+func MakeStock(id string, timeStamp time.Time) *Stock {
 	data := stockpb.Stock{
-		Id: id, TimeStamp: timestamppb.New(time.Now()),
+		Id: id, TimeStamp: timestamppb.New(timeStamp),
 		Last: 0, Volume: 0, TotalVolume: 0, Volatility: 0.000082,
 	}
 	stock := Stock{Data: &data, gen: MakeGenerator()}
